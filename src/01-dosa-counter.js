@@ -34,3 +34,43 @@
 export function calculateDosaOrder(type, quantity = 1, isSpicy = false) {
   // Your code here
 }
+  export function calculateDosaOrder(type, quantity = 1, isSpicy = false) {
+  // 1. Define the Menu
+  const prices = {
+    plain: 40,
+    masala: 60,
+    onion: 50,
+    butter: 70,
+    paper: 90,
+    cheese: 80
+  };
+
+  // 2. Validation
+  // Check if type is a string and if it exists in our price list
+  if (typeof type !== 'string' || !prices[type]) {
+    return null;
+  }
+
+  // Check if quantity is a valid positive number
+  if (typeof quantity !== 'number' || isNaN(quantity) || quantity <= 0) {
+    return null;
+  }
+
+  // 3. Calculation
+  let basePrice = prices[type];
+  
+  // Add 10 if spicy is true
+  let pricePerDosa = isSpicy ? basePrice + 10 : basePrice;
+  
+  let total = pricePerDosa * quantity;
+
+  // 4. Return the result object
+  return {
+    type: type,
+    quantity: quantity,
+    pricePerDosa: pricePerDosa,
+    total: total
+  };
+}
+
+    
